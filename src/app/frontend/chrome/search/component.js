@@ -25,14 +25,40 @@ export class SearchController {
   constructor($state) {
     /** @private {!ui.router.$state} */
     this.state_ = $state;
-
     this.query = '';
+
+    // Live search variables
+    this.last_search_time = 0;
+    this.search_interval = 3000;  // (In milliseconds)
+    this.queuedQuery;
+  }
+
+  /**
+   * @export
+   */
+  queueThrottledSubmission() {
+    var current_time = Math.round(new Date());
+    var current_interval = current_time - this.last_search_time;
+
+    this.last_search_time = current_time;
+
+    if (current_interval >= this.search_interval) {
+      this.state_.go(stateName, {q: this.query});
+    } else {
+      if (!this.queuedQuery) {
+        this.queuedQuery = setTimeout(function() {
+          this.state_.go(stateName, {q: this.query});
+          this.queuedQuery = null;
+        }.bind(this), Math.min(current_interval, this.search_interval));
+      }
+    }
   }
 
   /**
    * @export
    */
   submit() {
+    clearTimeout(this.queuedQuery);
     this.state_.go(stateName, {q: this.query});
   }
 }

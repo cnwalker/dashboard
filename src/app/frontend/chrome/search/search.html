@@ -18,6 +18,7 @@ limitations under the License.
       ng-submit="$ctrl.submit()">
   <md-icon class="kd-search-icon">search</md-icon>
   <input type="search"
+         ng-change="$ctrl.queueThrottledSubmission()"
          placeholder="Search"
          ng-model="$ctrl.query"
          required>
