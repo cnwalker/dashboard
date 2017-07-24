@@ -38,7 +38,7 @@ class ResourceCardListFilterController {
     /** @export */
     this.i18n = i18n;
     /** @private - Indicates whether search input should be shown or not */
-    this.hidden_ = true;
+    this.hidden_ = false;
     /** @private {!angular.JQLite} */
     this.element_ = $element;
     /** @private {!angular.$timeout} */
