@@ -15,9 +15,11 @@
 import chromeModule from 'chrome/module';
 import componentsModule from 'common/components/module';
 import filtersModule from 'common/filters/module';
+import namespaceModule from 'common/namespace/module';
 import configMapModule from 'configmap/module';
 import daemonSetModule from 'daemonset/module';
 import deploymentModule from 'deployment/module';
+import eventsModule from 'events/module';
 import ingressModule from 'ingress/module';
 import jobModule from 'job/module';
 import persistentVolumeClaimModule from 'persistentvolumeclaim/module';
@@ -54,6 +56,8 @@ export default angular
           configMapModule.name,
           secretModule.name,
           persistentVolumeClaimModule.name,
+          namespaceModule.name,
+          eventsModule.name,
         ])
     .config(stateConfig)
     .factory('kdOverviewResource', overviewResource);

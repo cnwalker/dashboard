@@ -21,6 +21,7 @@ import (
 	"github.com/kubernetes/dashboard/src/app/backend/resource/config"
 	"github.com/kubernetes/dashboard/src/app/backend/resource/dataselect"
 	"github.com/kubernetes/dashboard/src/app/backend/resource/discovery"
+	"github.com/kubernetes/dashboard/src/app/backend/resource/namespace"
 	"github.com/kubernetes/dashboard/src/app/backend/resource/workload"
 	"k8s.io/client-go/kubernetes"
 )
@@ -31,6 +32,9 @@ type Overview struct {
 	config.Config       `json:",inline"`
 	discovery.Discovery `json:",inline"`
 	workload.Workloads  `json:",inline"`
+
+	// Namespace information
+	NamespaceDetail namespace.NamespaceDetail `json:"namespaceDetail"`
 
 	// List of non-critical errors, that occurred during resource retrieval.
 	Errors []error `json:"errors"`
@@ -51,6 +55,11 @@ func GetOverview(client *kubernetes.Clientset, metricClient metricapi.MetricClie
 	}
 
 	workloadsResources, err := workload.GetWorkloads(client, metricClient, nsQuery, dsQuery)
+	if err != nil {
+		return &Overview{}, err
+	}
+
+	namespaceInfo, err := namespace.GetNamespaceDetail(client, nsQuery.ToRequestParam())
 	if err != nil {
 		return &Overview{}, err
 	}
@@ -76,6 +85,8 @@ func GetOverview(client *kubernetes.Clientset, metricClient metricapi.MetricClie
 			DaemonSetList:             workloadsResources.DaemonSetList,
 			StatefulSetList:           workloadsResources.StatefulSetList,
 		},
+
+		NamespaceDetail: *(namespaceInfo),
 
 		Errors: errors.MergeErrors(configResources.Errors, discoveryResources.Errors,
 			workloadsResources.Errors),

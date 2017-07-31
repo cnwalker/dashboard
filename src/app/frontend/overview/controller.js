@@ -18,6 +18,7 @@
 export class OverviewController {
   /**
    * @param {!backendApi.Overview} overview
+   * @param {!backendApi.NamespaceDetail} namespaceDetail
    * @param {!angular.Resource} kdPodListResource
    * @param {!angular.Resource} kdReplicaSetListResource
    * @param {!angular.Resource} kdDaemonSetListResource
@@ -33,12 +34,15 @@ export class OverviewController {
    * @ngInject
    */
   constructor(
-      overview, kdPodListResource, kdReplicaSetListResource, kdDaemonSetListResource,
-      kdDeploymentListResource, kdStatefulSetListResource, kdJobListResource, kdRCListResource,
-      kdServiceListResource, kdIngressListResource, kdConfigMapListResource, kdSecretListResource,
-      kdPersistentVolumeClaimListResource) {
+      overview, namespaceDetail, kdPodListResource, kdReplicaSetListResource,
+      kdDaemonSetListResource, kdDeploymentListResource, kdStatefulSetListResource,
+      kdJobListResource, kdRCListResource, kdServiceListResource, kdIngressListResource,
+      kdConfigMapListResource, kdSecretListResource, kdPersistentVolumeClaimListResource) {
     /** @export {!backendApi.Overview} */
     this.overview = overview;
+
+    /** @export {!backendApi.NamespaceDetail} */
+    this.namespaceDetail = namespaceDetail;
 
     /** @export {!angular.Resource} */
     this.podListResource = kdPodListResource;
