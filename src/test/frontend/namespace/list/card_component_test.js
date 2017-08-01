@@ -39,6 +39,18 @@ describe('Namespace card', () => {
     expect(ctrl.getNamespaceDetailHref()).toEqual('#!/namespace/foo-name');
   });
 
+  it('should construct overview href', () => {
+    // given
+    ctrl.namespace = {
+      objectMeta: {
+        name: 'foo-name',
+      },
+    };
+
+    // then
+    expect(ctrl.getNamespaceOverviewHref()).toEqual('#!/overview?namespace=foo-name')
+  });
+
   it('should format the "created at" tooltip correctly', () => {
     expect(ctrl.getCreatedAtTooltip('2016-06-06T09:13:12Z'))
         .toMatch('Created at 2016-06-06T09:13.*');

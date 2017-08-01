@@ -67,6 +67,14 @@ export default class NamespaceCardController {
   }
 
   /**
+   * @return {string}
+   * @export
+   */
+  getNamespaceOverviewHref() {
+    return this.state_.href('overview', new GlobalStateParams(this.namespace.objectMeta.name));
+  }
+
+  /**
    * @export
    * @param  {string} creationDate - creation date of the namespace
    * @return {string} localized tooltip with the formated creation date
