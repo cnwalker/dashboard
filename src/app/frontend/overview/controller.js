@@ -79,6 +79,9 @@ export class OverviewController {
 
     /** @export {!angular.Resource} */
     this.pvcListResource = kdPersistentVolumeClaimListResource;
+
+    this.podStats = {};
+    this.colorPalette = ['#00c752', '#f00', '#ff0'];
   }
 
   /**
@@ -101,5 +104,32 @@ export class OverviewController {
         this.overview.persistentVolumeClaimList.listMeta.totalItems;
 
     return resourcesLength === 0;
+  }
+
+  getPodStats() {
+    let podStats = {
+      'success': 0,
+      'failed': 0,
+      'pending': 0,
+      'total': this.overview.podList.listMeta.totalItems,
+    };
+
+    let pods = this.overview.podList.pods;
+
+    pods.forEach(function(pod) {
+      podStats[pod.podStatus.status] += 1;
+    });
+
+    podStats.chartValues = [
+      {value: podStats.success / podStats.total * 100},
+      {value: podStats.failed / podStats.total * 100},
+      {value: podStats.pending / podStats.total * 100},
+    ];
+
+    this.podStats = podStats;
+  }
+
+  $onInit() {
+    this.getPodStats();
   }
 }
