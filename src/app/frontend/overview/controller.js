@@ -12,13 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import {GlobalStateParams} from 'common/resource/globalresourcedetail';
+import {stateName} from 'namespace/detail/state';
+
 /**
  * @final
  */
 export class OverviewController {
   /**
    * @param {!backendApi.Overview} overview
-   * @param {!backendApi.NamespaceDetail} namespaceDetail
    * @param {!angular.Resource} kdPodListResource
    * @param {!angular.Resource} kdReplicaSetListResource
    * @param {!angular.Resource} kdDaemonSetListResource
@@ -34,15 +36,15 @@ export class OverviewController {
    * @ngInject
    */
   constructor(
-      overview, namespaceDetail, kdPodListResource, kdReplicaSetListResource,
-      kdDaemonSetListResource, kdDeploymentListResource, kdStatefulSetListResource,
-      kdJobListResource, kdRCListResource, kdServiceListResource, kdIngressListResource,
-      kdConfigMapListResource, kdSecretListResource, kdPersistentVolumeClaimListResource) {
+      $state, overview, kdPodListResource, kdReplicaSetListResource, kdDaemonSetListResource,
+      kdDeploymentListResource, kdStatefulSetListResource, kdJobListResource, kdRCListResource,
+      kdServiceListResource, kdIngressListResource, kdConfigMapListResource, kdSecretListResource,
+      kdPersistentVolumeClaimListResource) {
+    /** @private {!ui.router.$state} */
+    this.state_ = $state;
+
     /** @export {!backendApi.Overview} */
     this.overview = overview;
-
-    /** @export {!backendApi.NamespaceDetail} */
-    this.namespaceDetail = namespaceDetail;
 
     /** @export {!angular.Resource} */
     this.podListResource = kdPodListResource;
@@ -106,6 +108,19 @@ export class OverviewController {
     return resourcesLength === 0;
   }
 
+  /**
+   * @return {boolean}
+   * @export
+   */
+  isAllNamespaces() {
+    // Phase should be empty string if 'All Namespaces' is selected
+    return !this.overview.namespaceDetail.phase;
+  }
+
+  /**
+   * @return {Object}
+   * @export
+   */
   getPodStats() {
     let podStats = {
       'success': 0,
@@ -127,6 +142,15 @@ export class OverviewController {
     ];
 
     this.podStats = podStats;
+  }
+
+  /**
+   * @return {string}
+   * @export
+   */
+  getNamespaceDetailHref() {
+    return this.state_.href(
+        stateName, new GlobalStateParams(this.overview.namespaceDetail.objectMeta.name));
   }
 
   $onInit() {

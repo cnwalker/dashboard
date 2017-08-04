@@ -59,9 +59,14 @@ func GetOverview(client *kubernetes.Clientset, metricClient metricapi.MetricClie
 		return &Overview{}, err
 	}
 
-	namespaceInfo, err := namespace.GetNamespaceDetail(client, nsQuery.ToRequestParam())
-	if err != nil {
-		return &Overview{}, err
+	namespaceInfo := &namespace.NamespaceDetail{}
+
+	if nsQuery.ToRequestParam() != "" {
+		namespaceDetailOutput, err := namespace.GetNamespaceDetail(client, nsQuery.ToRequestParam())
+		if err != nil {
+			return &Overview{}, err
+		}
+		namespaceInfo = namespaceDetailOutput
 	}
 
 	return &Overview{

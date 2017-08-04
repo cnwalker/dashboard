@@ -29,46 +29,66 @@ limitations under the License.
   </kd-graph-card>
 </div>
 
-<kd-namespace-info namespace="::ctrl.overview.namespaceDetail"></kd-namespace-info>
-
-<kd-content-card ng-if="$ctrl.overview.podList.pods.length">
-    <kd-title>[[Resource Status|Label 'Resource Status' for the allocated resources section.]]</kd-title>
-    <kd-content>
-        <div class="kd-graph-container">
-            <div layout="row" layout-align="center center">
-                <div class="kd-graph-legend">
-                  <div class="kd-graph-legend-title">
-                    Pods
-                  </div>
-                  <div class="kd-graph-legend-entry">
-                    <md-icon class="kd-graph-green">stop</md-icon>
-                    [[Running|Label 'Running' for the pod statistics graphs legend.]]
-                    <span class="kd-graph-legend-value">
-                      {{$ctrl.podStats.success}}
-                    </span>
-                  </div>
-                  <div class="kd-graph-legend-entry">
-                      <md-icon class="kd-graph-yellow">stop</md-icon>
-                      [[Pending|Label 'Pending' for the pod statistics graphs legend.]]
-                      <span class="kd-graph-legend-value">
-                        {{$ctrl.podStats.pending}}
-                      </span>
-                  </div>
-                  <div class="kd-graph-legend-entry">
-                      <md-icon class="kd-graph-red">stop</md-icon>
-                      [[Failed|Label 'Failed' for the pod statistics graphs legend.]]
-                      <span class="kd-graph-legend-value">
-                        {{$ctrl.podStats.failed}}
-                      </span>
-                  </div>
+<div layout="row">
+    <kd-content-card ng-if="$ctrl.overview.podList.pods.length" flex="grow">
+        <kd-title>[[Resource Status|Label 'Resource Status' for the allocated resources section.]]</kd-title>
+        <kd-content>
+            <div class="kd-graph-container">
+                <div layout="row" layout-align="center center">
+                    <div class="kd-graph-legend">
+                      <div class="kd-graph-legend-title">
+                        Pods
+                      </div>
+                      <div class="kd-graph-legend-entry">
+                        <md-icon class="kd-graph-green">stop</md-icon>
+                        [[Running|Label 'Running' for the pod statistics graphs legend.]]
+                        <span class="kd-graph-legend-value">
+                          {{$ctrl.podStats.success}}
+                        </span>
+                      </div>
+                      <div class="kd-graph-legend-entry">
+                          <md-icon class="kd-graph-yellow">stop</md-icon>
+                          [[Pending|Label 'Pending' for the pod statistics graphs legend.]]
+                          <span class="kd-graph-legend-value">
+                            {{$ctrl.podStats.pending}}
+                          </span>
+                      </div>
+                      <div class="kd-graph-legend-entry">
+                          <md-icon class="kd-graph-red">stop</md-icon>
+                          [[Failed|Label 'Failed' for the pod statistics graphs legend.]]
+                          <span class="kd-graph-legend-value">
+                            {{$ctrl.podStats.failed}}
+                          </span>
+                      </div>
+                    </div>
+                    <kd-allocated-resources-chart colorpalette="$ctrl.colorPalette"
+                                                  data="$ctrl.podStats.chartValues">
+                    </kd-allocated-resources-chart>
                 </div>
-                <kd-allocated-resources-chart colorpalette="$ctrl.colorPalette"
-                                              data="$ctrl.podStats.chartValues">
-                </kd-allocated-resources-chart>
             </div>
-        </div>
-    <kd-content>
-</kd-content-card>
+        <kd-content>
+    </kd-content-card>
+    <kd-info-card ng-if="!$ctrl.isAllNamespaces()" flex="auto">
+      <kd-info-card-header>[[Details|Header in a detail view]]</kd-info-card-header>
+      <kd-info-card-section>
+        <kd-object-meta-info-card object-meta="::$ctrl.overview.namespaceDetail.objectMeta">
+        </kd-object-meta-info-card>
+        <kd-info-card-entry title="[[Status|Label 'Status' for the namespace namespace on the namespace details page.]]"
+                            ng-if="::$ctrl.namespace.phase">
+          {{$ctrl.namespace.phase}}
+        </kd-info-card-entry>
+        <a ng-href="{{::$ctrl.getNamespaceDetailHref()}}">
+          <md-button ng-if="$ctrl.overview.namespaceDetail.eventList.events.length">
+            [[View events|This is a label for button to go to the namespace detail page]]
+          </md-button>
+        </a>
+        <p ng-if="!$ctrl.overview.namespaceDetail.eventList.events.length">
+            [[No events available|Label notifying user there are no events in namespace detail]]
+        </p>
+      </kd-info-card-section>
+    </kd-info-card>
+</div>
+
 
 <kd-content-card ng-if="$ctrl.overview.podList.pods.length">
   <kd-content>

@@ -62,8 +62,8 @@ export default class NamespaceCardController {
    * @return {string}
    * @export
    */
-  getNamespaceDetailHref() {
-    return this.state_.href(stateName, new GlobalStateParams(this.namespace.objectMeta.name));
+  getNamespaceOverviewHref() {
+    return this.state_.href('overview', {namespace: this.namespace.objectMeta.name});
   }
 
   /**

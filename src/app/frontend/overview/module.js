@@ -29,6 +29,8 @@ import secretModule from 'secret/module';
 import serviceModule from 'service/module';
 import statefulSetModule from 'statefulset/module';
 
+// import {namespaceInfoComponent} from 'namespace/detail/info_component';
+
 import stateConfig from './stateconfig';
 
 /**
@@ -56,7 +58,6 @@ export default angular
           configMapModule.name,
           secretModule.name,
           persistentVolumeClaimModule.name,
-          namespaceModule.name,
           eventsModule.name,
         ])
     .config(stateConfig)
