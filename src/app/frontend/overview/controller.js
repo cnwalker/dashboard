@@ -82,7 +82,22 @@ export class OverviewController {
     /** @export {!angular.Resource} */
     this.pvcListResource = kdPersistentVolumeClaimListResource;
 
+    /** @export {Object} */
     this.podStats = {};
+
+    /** @export {number} */
+    this.podStats.success;
+
+    /** @export {number} */
+    this.podStats.pending;
+
+    /** @export {number} */
+    this.podStats.failed;
+
+    /** @export {Array<Object>} */
+    this.podStats.chartValues = [];
+
+    /** @export {!Array<string>} */
     this.colorPalette = ['#00c752', '#f00', '#ff0'];
   }
 
@@ -108,16 +123,7 @@ export class OverviewController {
     return resourcesLength === 0;
   }
 
-  /**
-   * @return {boolean}
-   * @export
-   */
-  isAllNamespaces() {
-    // Phase should be empty string if 'All Namespaces' is selected
-    return !this.overview.namespaceDetail.phase;
-  }
-
-  /**
+  /*
    * @return {Object}
    * @export
    */
@@ -126,7 +132,7 @@ export class OverviewController {
       'success': 0,
       'failed': 0,
       'pending': 0,
-      'total': this.overview.podList.listMeta.totalItems,
+      'total': this.overview.podList.pods.length,
     };
 
     let pods = this.overview.podList.pods;
@@ -141,7 +147,16 @@ export class OverviewController {
       {value: podStats.pending / podStats.total * 100},
     ];
 
-    this.podStats = podStats;
+    return podStats;
+  }
+
+  /**
+   * @return {boolean}
+   * @export
+   */
+  isAllNamespaces() {
+    // Phase should be empty string if 'All Namespaces' is selected
+    return !this.overview.namespaceDetail.phase;
   }
 
   /**
@@ -154,6 +169,6 @@ export class OverviewController {
   }
 
   $onInit() {
-    this.getPodStats();
+    this.podStats = this.getPodStats();
   }
 }
