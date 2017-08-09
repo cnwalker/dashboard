@@ -123,7 +123,7 @@ export class OverviewController {
     return resourcesLength === 0;
   }
 
-  /*
+  /**
    * @return {Object}
    * @export
    */
