@@ -83,6 +83,9 @@ export class NamespaceSelectController {
 
     /** @export */
     this.i18n = i18n;
+
+    /** @export {string} */
+    this.searchText;
   }
 
   /**
@@ -197,6 +200,29 @@ export class NamespaceSelectController {
           this.changeNamespace();
         }
       });
+    }
+  }
+
+  /**
+   * @export
+   */
+  searchNamespaces() {
+    return ['All Namespaces'].concat(this.namespaces.filter(function(namespace) {
+      return namespace.indexOf(this.searchText.toLowerCase()) !== -1;
+    }.bind(this)));
+  }
+
+  /**
+   * @export
+   */
+  changeSelectedNamespace() {
+    if (this.selectedItem) {
+      if (this.selectedItem === 'All Namespaces') {
+        this.selectedNamespace = ALL_NAMESPACES;
+      } else {
+        this.selectedNamespace = this.selectedItem;
+      }
+      this.changeNamespace();
     }
   }
 }
