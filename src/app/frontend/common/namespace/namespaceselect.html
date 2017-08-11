@@ -15,6 +15,7 @@ limitations under the License.
 -->
 
 <div class="kd-namespace-select-title">[[Namespace|Title for namespace select.]]</div>
+<form ng-submit="$event.preventDefault()">
     <md-autocomplete
       flex="80"
       md-selected-item="$ctrl.selectedItem"
@@ -32,6 +33,7 @@ limitations under the License.
           No namespaces matching "{{ctrl.searchText}}".
         </md-not-found>
     </md-autocomplete>
+</form>
 <md-input-container class="kd-namespace-select-input-container">
   <md-select ng-model="$ctrl.selectedNamespace"
              md-on-open="$ctrl.loadNamespacesIfNeeded()"

@@ -207,9 +207,16 @@ export class NamespaceSelectController {
    * @export
    */
   searchNamespaces() {
-    return ['All Namespaces'].concat(this.namespaces.filter(function(namespace) {
+    console.log(this.searchText);
+    let result = this.namespaces.filter(function(namespace) {
       return namespace.indexOf(this.searchText.toLowerCase()) !== -1;
-    }.bind(this)));
+    }.bind(this));
+
+    if (result.length === 0) {
+      result = this.namespaces;
+    }
+
+    return ['All Namespaces'].concat(result);
   }
 
   /**
