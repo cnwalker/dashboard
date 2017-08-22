@@ -218,10 +218,11 @@ export class NamespaceSelectController {
     }.bind(this));
 
     if (result.length === 0 && this.searchText === '') {
-      result = this.namespaces;
+      result = ['All namespaces'].concat(this.namespaces);
+    } else {
+      result.concat(['All namespaces']
     }
-
-    return ['All namespaces'].concat(result);
+    return result;
   }
 
   /**
