@@ -86,6 +86,9 @@ export class NamespaceSelectController {
 
     /** @export {string} */
     this.searchText;
+
+    /** @export {boolean} */
+    this.noCache = true;
   }
 
   /**
@@ -207,12 +210,11 @@ export class NamespaceSelectController {
    * @export
    */
   searchNamespaces() {
-    console.log(this.searchText);
     let result = this.namespaces.filter(function(namespace) {
-      return namespace.indexOf(this.searchText.toLowerCase()) !== -1;
+      return namespace.indexOf(this.searchText.toLowerCase()) !== -1 && namespace != '_all';
     }.bind(this));
 
-    if (result.length === 0) {
+    if (result.length === 0 && this.searchText === '') {
       result = this.namespaces;
     }
 

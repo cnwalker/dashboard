@@ -68,6 +68,33 @@ md-select {
   }
 }
 
+md-autocomplete {
+    background-color: transparent;
+    font-weight: bold;
+    .md-whiteframe-1dp, .md-whiteframe-z1 {
+        box-shadow: none;
+    }
+
+    &.kd-namespace-autocomplete {
+      font-size: $body-font-size-base;
+      padding-left: $baseline-grid;
+    }
+}
+
+md-autocomplete-wrap {
+    input[type="search"] {
+        padding: 0;
+    }
+
+    border-bottom: 1px solid $foreground-4;
+    padding-bottom: .5 * $baseline-grid;
+}
+
+.kd-namespace-autocomplete-form {
+    box-shadow: none;
+    box-sizing: none;
+}
+
 .kd-namespace-select-container {
   md-content {
     display: flex;
