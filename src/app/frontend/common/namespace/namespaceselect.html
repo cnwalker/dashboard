@@ -15,44 +15,24 @@ limitations under the License.
 -->
 
 <div class="kd-namespace-select-title">[[Namespace|Title for namespace select.]]</div>
-<md-input-container class="kd-namespace-select-input-container">
-    <md-autocomplete
-      class="kd-namespace-autocomplete"
-      md-no-cache="$ctrl.noCache"
-      md-selected-item="$ctrl.selectedItem"
-      md-search-text-change="$ctrl.loadNamespacesIfNeeded()"
-      ng-click="$ctrl.loadNamespacesIfNeeded()"
-      md-search-text="$ctrl.searchText"
-      md-items="namespace in $ctrl.searchNamespaces()"
-      md-selected-item-change="$ctrl.changeSelectedNamespace()"
-      md-item-text="namespace"
-      md-min-length="0"
-      placeholder="Find a namespace">
-        <md-item-template>
-          <span md-highlight-text="$ctrl.searchText" md-highlight-flags="^i">{{namespace}}</span>
-        </md-item-template>
-        <md-not-found>
-          No namespaces matching "{{ctrl.searchText}}".
-        </md-not-found>
-    </md-autocomplete>
-
-  <md-select ng-model="$ctrl.selectedNamespace"
-             md-on-open="$ctrl.loadNamespacesIfNeeded()"
-             md-on-close="$ctrl.changeNamespace()"
-             class="kd-namespace-select"
-             aria-label="[[Selector for namespaces|Text describing what namespace selector is]]"
-             md-container-class="kd-namespace-select-container"
-             md-selected-text="$ctrl.formatNamespace()">
-    <md-option ng-value="::$ctrl.ALL_NAMESPACES"
-               class="kd-namespace-select-all">
-      [[All namespaces|Text for dropdown item that indicates that no namespace was selected.]]
-    </md-option>
-    <md-optgroup label="[[Namespaces|Label atop a list of namespaces]]"
-                 class="kd-namespace-select-namespace-list">
-      <md-option ng-value="namespace"
-                 ng-repeat="namespace in $ctrl.namespaces">
-        {{::namespace}}
-      </md-option>
-    </md-optgroup>
-  </md-select>
-</md-input-container>
+<md-autocomplete
+    md-select-on-focus
+    class="kd-namespace-autocomplete"
+    ng-blur="$ctrl.fillAutoCompleteWithCurrentNamespace()"
+    ng-focus="$ctrl.loadNamespacesIfNeeded()"
+    md-no-cache="$ctrl.noCache"
+    md-autoselect="$ctrl.noCache"
+    md-selected-item="$ctrl.selectedItem"
+    md-search-text="$ctrl.searchText"
+    md-items="namespace in $ctrl.searchNamespaces()"
+    md-selected-item-change="$ctrl.changeSelectedNamespace()"
+    md-item-text="namespace"
+    md-min-length="0"
+    placeholder="Find a namespace">
+    <md-item-template>
+      <span md-highlight-text="$ctrl.searchText" md-highlight-flags="^i">{{namespace}}</span>
+    </md-item-template>
+    <md-not-found>
+      No namespaces matching "{{ctrl.searchText}}".
+    </md-not-found>
+</md-autocomplete>

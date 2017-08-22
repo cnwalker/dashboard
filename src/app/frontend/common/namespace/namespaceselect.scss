@@ -78,6 +78,8 @@ md-autocomplete {
     &.kd-namespace-autocomplete {
       font-size: $body-font-size-base;
       padding-left: $baseline-grid;
+      font-family: $font-family-monospace;
+      margin: $baseline-grid 0;
     }
 }
 

@@ -100,6 +100,8 @@ export class NamespaceSelectController {
     this.scope_.$watch(() => this.futureStateService_.params, (toParams) => {
       this.onNamespaceChanged_(toParams);
     });
+
+    this.fillAutoCompleteWithCurrentNamespace()
   }
 
   /**
@@ -184,6 +186,7 @@ export class NamespaceSelectController {
    */
   changeNamespace() {
     this.state_.go('.', {[namespaceParam]: this.selectedNamespace});
+    this.fillAutoCompleteWithCurrentNamespace();
   }
 
   /**
@@ -211,14 +214,24 @@ export class NamespaceSelectController {
    */
   searchNamespaces() {
     let result = this.namespaces.filter(function(namespace) {
-      return namespace.indexOf(this.searchText.toLowerCase()) !== -1 && namespace != '_all';
+      return namespace.indexOf(this.searchText.toLowerCase()) !== -1;
     }.bind(this));
 
     if (result.length === 0 && this.searchText === '') {
       result = this.namespaces;
     }
 
-    return ['All Namespaces'].concat(result);
+    return ['All namespaces'].concat(result);
+  }
+
+  /**
+   * @export
+   */
+  fillAutoCompleteWithCurrentNamespace() {
+    this.searchText = this.selectedNamespace;
+    if (this.searchText === '_all') {
+      this.searchText = 'All namespaces';
+    }
   }
 
   /**
@@ -226,7 +239,7 @@ export class NamespaceSelectController {
    */
   changeSelectedNamespace() {
     if (this.selectedItem) {
-      if (this.selectedItem === 'All Namespaces') {
+      if (this.selectedItem === 'All namespaces') {
         this.selectedNamespace = ALL_NAMESPACES;
       } else {
         this.selectedNamespace = this.selectedItem;
