@@ -213,15 +213,15 @@ export class NamespaceSelectController {
    * @export
    */
   searchNamespaces() {
-    let result = this.namespaces.filter(function(namespace) {
-      return namespace.indexOf(this.searchText.toLowerCase()) !== -1;
-    }.bind(this));
-
     if (this.searchText === '') {
       return ['All namespaces'].concat(this.namespaces);
     }
 
-    result.push('All namespaces');
+    let namespacesToSearch = this.namespaces.concat(['All namespaces']);
+    let result = namespacesToSearch.filter(function(namespace) {
+      return namespace.toLowerCase().indexOf(this.searchText.toLowerCase()) !== -1;
+    }.bind(this));
+
     return result;
   }
 
