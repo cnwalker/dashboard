@@ -17,6 +17,7 @@ limitations under the License.
 <div class="kd-namespace-select-title">[[Namespace|Title for namespace select.]]</div>
 <md-autocomplete
     md-select-on-focus
+    flex="90"
     spellcheck="false"
     class="kd-namespace-autocomplete"
     ng-blur="$ctrl.fillAutoCompleteWithCurrentNamespace()"
@@ -31,7 +32,7 @@ limitations under the License.
     md-min-length="0"
     placeholder="Find a namespace">
     <md-item-template>
-      <span md-highlight-text="$ctrl.searchText" md-highlight-flags="i">{{namespace}}</span>
+      <span flex="90" md-highlight-text="$ctrl.searchText" md-highlight-flags="i">{{namespace}}</span>
     </md-item-template>
     <md-not-found>
       No namespaces matching "{{ctrl.searchText}}".

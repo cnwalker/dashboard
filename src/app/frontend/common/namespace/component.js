@@ -217,11 +217,11 @@ export class NamespaceSelectController {
       return namespace.indexOf(this.searchText.toLowerCase()) !== -1;
     }.bind(this));
 
-    if (result.length === 0 && this.searchText === '') {
-      result = ['All namespaces'].concat(this.namespaces);
-    } else {
-      result.concat(['All namespaces']
+    if (this.searchText === '') {
+      return ['All namespaces'].concat(this.namespaces);
     }
+
+    result.push('All namespaces');
     return result;
   }
 
@@ -245,6 +245,7 @@ export class NamespaceSelectController {
       } else {
         this.selectedNamespace = this.selectedItem;
       }
+      document.getElementById('input-3').blur();
       this.changeNamespace();
     }
   }
