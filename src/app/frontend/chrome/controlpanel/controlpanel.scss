@@ -12,25 +12,39 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import DeployFromFilePageObject from './deployfromfile_po';
+@import '../../variables';
 
-describe('Deploy from file view', () => {
-  /** @type {!DeployFromFilePageObject} */
-  let page;
+.kd-control-panel-separator {
+  cursor: default;
+  font-weight: $light-font-weight;
+  line-height: 5 * $baseline-grid;
+  padding: 0 $baseline-grid;
+  user-select: none;
+}
 
-  beforeEach(() => {
-    page = new DeployFromFilePageObject();
+.kd-auth-status {
+  font-weight: $bold-font-weight;
+  text-transform: uppercase;
+}
 
-    browser.get('#!/deploy/file');
-    // switches to deploy from file
-    page.deployFromFileRadioButton.click();
-  });
+.kd-auth-status-spinner {
+  margin: 0 auto;
+}
 
-  it('should have error after clicking deploy without selecting file', () => {
-    // when
-    page.deployButton.click();
+.kd-cross-line-blue {
+  stroke: $primary;
+  stroke-width: 2;
+}
 
-    // then
-    expect(page.inputContainer.getAttribute('class')).toContain('md-input-invalid');
-  });
-});
+.kd-cross-line-white {
+  stroke: $content-background;
+  stroke-width: 4;
+}
+
+.kd-cross-style {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

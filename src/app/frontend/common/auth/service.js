@@ -12,7 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import {stateName as errorState} from 'error/state';
 import {stateName as loginState} from 'login/state';
+import {stateName as overviewState} from 'overview/state';
+
 
 /** @final */
 export class AuthService {
@@ -61,7 +64,15 @@ export class AuthService {
    * @private
    */
   setTokenCookie_(token) {
-    this.cookies_.put(this.tokenCookieName_, token);
+    this.cookies_.put(this.tokenCookieName_, token, {secure: true});
+  }
+
+  /**
+   * Remove auth cookies.
+   */
+  removeAuthCookies() {
+    this.cookies_.remove(this.tokenCookieName_);
+    this.cookies_.remove(this.skipLoginPageCookieName_);
   }
 
   /**
@@ -106,6 +117,14 @@ export class AuthService {
   }
 
   /**
+   * Cleans cookies and goes to login page.
+   */
+  logout() {
+    this.removeAuthCookies();
+    this.state_.go(loginState);
+  }
+
+  /**
    * Returns promise that returns TargetState once backend decides whether user is logged in or not.
    * User is then redirected to target state (if logged in) or to login page.
    *
@@ -119,30 +138,28 @@ export class AuthService {
    */
   isLoggedIn(transition) {
     let deferred = this.q_.defer();
-    let token = this.cookies_.get(this.tokenCookieName_) || '';
-    let resource = this.resource_('api/v1/login/status', {}, {
-      get: {
-        method: 'GET',
-        headers: {
-          [this.tokenHeaderName_]: token,
-        },
-      },
-    });
-
-    // Skip log in check if user is going to login page already or has chosen to skip it.
-    if (!this.isLoginPageEnabled() || transition.to().name === loginState ||
-        transition.to().name === 'internalerror') {
-      deferred.resolve(true);
-      return deferred.promise;
-    }
-
-    resource.get(
+    this.getLoginStatus().then(
         (/** @type {!backendApi.LoginStatus} */ loginStatus) => {
-          if (loginStatus.headerPresent || loginStatus.tokenPresent) {
+          // Do not allow entering login page if already authenticated or authentication is
+          // disabled.
+          if (transition.to().name === loginState &&
+              (this.isAuthenticated(loginStatus) || !this.isAuthenticationEnabled(loginStatus))) {
+            deferred.resolve(this.state_.target(overviewState));
+            return;
+          }
+
+          // In following cases user should not be redirected and reach his target state:
+          if (transition.to().name === loginState ||         // User is going to login page.
+              transition.to().name === errorState ||         // User is going to error page.
+              !this.isLoginPageEnabled() ||                  // User has chosen to skip login page.
+              !this.isAuthenticationEnabled(loginStatus) ||  // Authentication is disabled.
+              this.isAuthenticated(loginStatus))             // User is already authenticated.
+          {
             deferred.resolve(true);
             return;
           }
 
+          // In other cases redirect user to login state.
           deferred.resolve(this.state_.target(loginState));
         },
         (err) => {
@@ -152,6 +169,44 @@ export class AuthService {
         });
 
     return deferred.promise;
+  }
+
+  /**
+   * Checks if user is authenticated.
+   *
+   * @param {!backendApi.LoginStatus} loginStatus
+   * @return {boolean}
+   */
+  isAuthenticated(loginStatus) {
+    return loginStatus.headerPresent || loginStatus.tokenPresent;
+  }
+
+  /**
+   * Checks authentication is enabled. It is enabled only on HTTPS.
+   *
+   * @param {!backendApi.LoginStatus} loginStatus
+   * @return {boolean}
+   */
+  isAuthenticationEnabled(loginStatus) {
+    return loginStatus.httpsMode;
+  }
+
+  /**
+   * @return {!angular.$q.Promise}
+   */
+  getLoginStatus() {
+    let token = this.cookies_.get(this.tokenCookieName_) || '';
+    return this
+        .resource_('api/v1/login/status', {}, {
+          get: {
+            method: 'GET',
+            headers: {
+              [this.tokenHeaderName_]: token,
+            },
+          },
+        })
+        .get()
+        .$promise;
   }
 
   /**

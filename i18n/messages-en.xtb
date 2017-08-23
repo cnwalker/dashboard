@@ -10,6 +10,9 @@
   <translation id="6783150167357318030" key="MSG_ACTION_BAR_DELETE_TOOLTIP" desc="Generic &quot;Delete some resource&quot; tooltip text which appears over the delete icon on the global action bar.">Delete <ph name="RESOURCE_NAME"/></translation>
   <translation id="1421031463694814701" key="MSG_ACTION_BAR_EDIT_TOOLTIP" desc="Generic &quot;Edit some resource&quot; tooltip text which appears over the edit icon on the global action bar.">Edit <ph name="RESOURCE_NAME"/></translation>
   <translation id="1024358167652076581" key="MSG_ALL_NAMESPACES" desc="Text for dropdown item that indicates that no namespace was selected">All namespaces</translation>
+  <translation id="2436932884134192170" key="MSG_AUTH_STATUS_HEADER" desc="Login status displayed when authorization header is used.">Logged in with auth header</translation>
+  <translation id="2593766780781854099" key="MSG_AUTH_STATUS_SKIPPED" desc="Login status displayed when default service account is used.">Default service account</translation>
+  <translation id="7811526624157700330" key="MSG_AUTH_STATUS_TOKEN" desc="Login status displayed when token is used.">Logged in with token</translation>
   <translation id="6614117428496734699" key="MSG_BREADCRUMBS_ABOUT_LABEL" desc="Label 'About' that appears as a breadcrumbs on the action bar.">About</translation>
   <translation id="1153397682574555638" key="MSG_BREADCRUMBS_CLUSTER_LABEL" desc="Label 'Cluster' that appears as a breadcrumbs on the action bar.">Cluster</translation>
   <translation id="5346529710805392125" key="MSG_BREADCRUMBS_CONFIG_AND_STORAGE_LABEL" desc="Label 'Config and storage' that appears as a breadcrumbs on the action bar.">Config and storage</translation>
@@ -23,7 +26,7 @@
   <translation id="8885204956315323333" key="MSG_BREADCRUMBS_INGRESSS_LABEL" desc="Label 'Ingresses' that appears as a breadcrumbs on the action bar.">Ingresses</translation>
   <translation id="2741276106482217695" key="MSG_BREADCRUMBS_INTERNALERROR_LABEL" desc="Label for internal error page for breadcrumbs on the action bar.">Internal error</translation>
   <translation id="2024511088483477440" key="MSG_BREADCRUMBS_JOBS_LABEL" desc="Label 'Jobs' that appears as a breadcrumbs on the action bar.">Jobs</translation>
-  <translation id="6766334846566612127" key="MSG_BREADCRUMBS_LOGIN_LABEL" desc="Label 'Log in' that appears as a breadcrumbs on the action bar.">Log in</translation>
+  <translation id="7001335550079103928" key="MSG_BREADCRUMBS_LOGIN_LABEL" desc="Label 'Log in' that appears as a breadcrumbs on the action bar.">Login</translation>
   <translation id="1050029015813261838" key="MSG_BREADCRUMBS_LOGS_LABEL" desc="Breadcrum label for the logs view.">Logs</translation>
   <translation id="7538864180606148657" key="MSG_BREADCRUMBS_NAMESPACES_LABEL" desc="Label 'Namespaces' that appears as a breadcrumbs on the action bar.">Namespaces</translation>
   <translation id="1946322401100894439" key="MSG_BREADCRUMBS_NODES_LABEL" desc="Label 'Nodes' that appears as a breadcrumbs on the action bar.">Nodes</translation>
@@ -43,6 +46,9 @@
   <translation id="1656728804447365846" key="MSG_BREADCRUMBS_WORKLOADS_LABEL" desc="Label 'Workloads' that appears as a breadcrumbs on the action bar.">Workloads</translation>
   <translation id="5441724995487814814" key="MSG_CHROME_CHROME_0" desc="Tooltip for global action bar create button tooltip.">Create an application or any Kubernetes resource</translation>
   <translation id="152996649337797552" key="MSG_CHROME_CHROME_1" desc="Label for global action bar create button.">Create</translation>
+  <translation id="8711874778657823772" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_0" desc="Tooltip for the control panel displayed in the right top corner.">Control panel</translation>
+  <translation id="7284639485141385452" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_1" desc="Logout menu item.">Logout</translation>
+  <translation id="7210325010968831729" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_2" desc="Login menu item.">Login</translation>
   <translation id="5023828914132135944" key="MSG_CHROME_NAV_NAV_0" desc="Cluster group menu entry.">Cluster</translation>
   <translation id="6343362656986122693" key="MSG_CHROME_NAV_NAV_1" desc="Namespaces menu entry.">Namespaces</translation>
   <translation id="716443703088219571" key="MSG_CHROME_NAV_NAV_10" desc="Pods menu entry.">Pods</translation>
@@ -128,8 +134,8 @@
   <translation id="7280957759518658382" key="MSG_COMMON_RESOURCE_EDITRESOURCE_2" desc="Label for cancel button.">Cancel</translation>
   <translation id="874103626505058314" key="MSG_COMMON_RESOURCE_EDITRESOURCE_3" desc="Label for update button.">Update</translation>
   <translation id="2484996950399771862" key="MSG_COMMON_RESOURCE_EDITRESOURCE_4" desc="Label for copy button.">Copy</translation>
-  <translation id="6231407305842192181" key="MSG_COMMON_SCALING_SCALERESOURCE_0" desc="Title for a scaling resource dialog.">Scale a {{::$ctrl.resourceKindName}}</translation>
-  <translation id="8595969509136101884" key="MSG_COMMON_SCALING_SCALERESOURCE_1" desc="Title for a scaling resource dialog.">Scale a {{::$ctrl.resourceKindName}}</translation>
+  <translation id="4435278810119842088" key="MSG_COMMON_SCALING_SCALERESOURCE_0" desc="Title for a scaling resource dialog.">Scale a {{::$ctrl.resourceKindDisplayName}}</translation>
+  <translation id="6799841013413751791" key="MSG_COMMON_SCALING_SCALERESOURCE_1" desc="Title for a scaling resource dialog.">Scale a {{::$ctrl.resourceKindDisplayName}}</translation>
   <translation id="3101929086031362285" key="MSG_COMMON_SCALING_SCALERESOURCE_2" desc="User help for the pod count update dialog (on the replication controllers detail page).">Resource {{::$ctrl.resourceName}} will be updated to reflect the desired count.</translation>
   <translation id="3999312467829287271" key="MSG_COMMON_SCALING_SCALERESOURCE_3" desc="Label \'Desired number of pods\', which appears as a placeholder for the pods count input on the &quot;update pods count&quot; dialog (for a Deployment, ReplicaSet, Replication Controller resource).">Desired number of pods</translation>
   <translation id="536413431729659126" key="MSG_COMMON_SCALING_SCALERESOURCE_4" desc="Label \'Desired degree parallelism for a Job\', which appears as a placeholder for the parallelism count input on the &quot;update parallelism count&quot; dialog (for a Job resource).">Desired degree of parallelism for Job</translation>
@@ -463,8 +469,9 @@
   <translation id="5485538583399563094" key="MSG_LESS_WARNINGS_LABEL" desc="Show less warnings button label.">Show <ph name="COUNT"> less</ph></translation>
   <translation id="6428808795341026405" key="MSG_LOGIN_BASIC_0" desc="\'Username\' field label shown on login page for basic auth">Username</translation>
   <translation id="2222883722971802152" key="MSG_LOGIN_BASIC_1" desc="\'Password\' field label shown on login page for basic auth">Password</translation>
-  <translation id="5259124924941383194" key="MSG_LOGIN_LOGIN_0" desc="Title shown on login page on login card">Log in to Kubernetes Dashboard</translation>
+  <translation id="1409623546562132476" key="MSG_LOGIN_LOGIN_0" desc="Title shown on login page on login card">Kubernetes Dashboard</translation>
   <translation id="5474439021716449004" key="MSG_LOGIN_LOGIN_1" desc="\'Token\' option label shown on login page">Token</translation>
+  <translation id="7903955345350777049" key="MSG_LOGIN_OPTIONS_0" desc="Label of authentication method selector.">Authentication method:</translation>
   <translation id="3142285229708080307" key="MSG_LOGIN_TOKEN_0" desc="\'Token\' field label shown on login page for token auth">Token</translation>
   <translation id="1813585001229142426" key="MSG_LOGIN_UNAUTHORIZED_ERROR" desc="Text shown when unauthorized user tries to log in.">Authentication failed. Please try again.</translation>
   <translation id="4722922095699681308" key="MSG_LOGS_LOGS_0" desc="Title prefix for logs card.">Logs from</translation>
@@ -543,13 +550,17 @@
   <translation id="2412371468817393973" key="MSG_PERSISTENTVOLUMECLAIM_DETAIL_INFO_2" desc="Persistent volume claim info details section volume entry.">Volume</translation>
   <translation id="6740597941261077457" key="MSG_PERSISTENTVOLUMECLAIM_DETAIL_INFO_3" desc="Persistent volume claim info details section capacity entry.">Capacity</translation>
   <translation id="297809042910539610" key="MSG_PERSISTENTVOLUMECLAIM_DETAIL_INFO_4" desc="Persistent volume claim info details section access modes entry.">Access modes</translation>
+  <translation id="4416635686473158703" key="MSG_PERSISTENTVOLUMECLAIM_DETAIL_INFO_5" desc="Persistent volume claim info details section storage class entry.">Storage class</translation>
   <translation id="29404782164326270" key="MSG_PERSISTENTVOLUMECLAIM_LIST_CARDLIST_0" desc="Label which appears above the list of such objects.">Persistent Volume Claims</translation>
   <translation id="5483797855700474826" key="MSG_PERSISTENTVOLUMECLAIM_LIST_CARDLIST_1" desc="Label \'Name\' which appears as a column label in the table of persistent volume claims (persistent volume claim list view).">Name</translation>
   <translation id="1258689958046107203" key="MSG_PERSISTENTVOLUMECLAIM_LIST_CARDLIST_2" desc="Label \'Namespace\' which appears as a column label in the table of persistent volume claims (persistent volume claim list view).">Namespace</translation>
   <translation id="1790149424209494199" key="MSG_PERSISTENTVOLUMECLAIM_LIST_CARDLIST_3" desc="Label \'Volume\' which appears as a column label in the table of persistent volume claims (persistent volume claim list view).">Volume</translation>
-  <translation id="5942271040555588136" key="MSG_PERSISTENTVOLUMECLAIM_LIST_CARDLIST_4" desc="Label \'Labels\' which appears as a column label in the table of persistent volume claim (persistent volume claim list view).">Labels</translation>
+  <translation id="6848550680164349416" key="MSG_PERSISTENTVOLUMECLAIM_LIST_CARDLIST_4" desc="Label \'Status\' which appears as a column label in the table of persistent volume claims (persistent volume claim list view).">Status</translation>
   <translation id="5458993660911534244" key="MSG_PERSISTENTVOLUMECLAIM_LIST_CARDLIST_5" desc="Label \'Age\' which appears as a column label in the table of persistent volume claims (persistent volume claim list view).">Age</translation>
   <translation id="5623491181214143081" key="MSG_PERSISTENTVOLUMECLAIM_LIST_CARDLIST_6" desc="Text for persistent volume claim card list zerostate.">There are no Persistent Volume Claims to display.</translation>
+  <translation id="2711600512301130906" key="MSG_PERSISTENTVOLUMECLAIM_LIST_CARDLIST_7" desc="Label \'Capacity\' which appears as a column label in the table of persistent volume claims (persistent volume claim list view).">Capacity</translation>
+  <translation id="3165687067342260212" key="MSG_PERSISTENTVOLUMECLAIM_LIST_CARDLIST_8" desc="Label \'AccessModes\' which appears as a column label in the table of persistent volume claims (persistent volume claim list view).">Access Modes</translation>
+  <translation id="5181720011017192344" key="MSG_PERSISTENTVOLUMECLAIM_LIST_CARDLIST_9" desc="Label \'StorageClass\' which appears as a column label in the table of persistent volume claims (persistent volume claim list view).">Storage Class</translation>
   <translation id="445776331089273321" key="MSG_PERSISTENTVOLUMECLAIM_LIST_CARD_0" desc="Tooltip text which appears on error icon hover.">This claim is in lost state</translation>
   <translation id="2307976094948542528" key="MSG_PERSISTENTVOLUMECLAIM_LIST_CARD_1" desc="Tooltip text which appears on pending icon hover.">This claim is in pending state</translation>
   <translation id="739174621480425961" key="MSG_PERSISTENTVOLUMECLAIM_LIST_CARD_2" desc="Label \'Persistent Volume Claim\' which will appear in the persistent volume claim delete dialog opened from a persistentvolumeclaim card on the list page.">Persistent Volume Claim</translation>
@@ -562,6 +573,8 @@
   <translation id="1048037683065603923" key="MSG_PERSISTENTVOLUME_DETAIL_INFO_4" desc="Persistent volume info details section access modes entry.">Access modes</translation>
   <translation id="489198110526224081" key="MSG_PERSISTENTVOLUME_DETAIL_INFO_5" desc="Persistent volume info details section capacity entry.">Capacity</translation>
   <translation id="7193098873360233228" key="MSG_PERSISTENTVOLUME_DETAIL_INFO_6" desc="Persistent volume info details section message entry.">Message</translation>
+  <translation id="8677793784230574410" key="MSG_PERSISTENTVOLUME_DETAIL_INFO_7" desc="Persistent volume info details section storage class entry.">Storage class</translation>
+  <translation id="4472860153979076217" key="MSG_PERSISTENTVOLUME_DETAIL_INFO_8" desc="Persistent volume info details section reason entry.">Reason</translation>
   <translation id="3344267084925697004" key="MSG_PERSISTENTVOLUME_DETAIL_SOURCEINFO_0" desc="Persistent volume source info title.">Persistent volume source</translation>
   <translation id="4229851576634547217" key="MSG_PERSISTENTVOLUME_DETAIL_SOURCEINFO_1" desc="Persistent volume source info host path title.">Host path</translation>
   <translation id="2012274989896397034" key="MSG_PERSISTENTVOLUME_DETAIL_SOURCEINFO_10" desc="Persistent volume source info AWS block storage section FS type entry.">FS type</translation>
@@ -609,9 +622,10 @@
   <translation id="2543608444657856177" key="MSG_PERSISTENTVOLUME_DETAIL_SOURCEINFO_9" desc="Persistent volume source info AWS block storage section volume ID entry.">Volume ID</translation>
   <translation id="7944617415298542080" key="MSG_PERSISTENTVOLUME_LIST_CARDLIST_0" desc="Label which appears above the list of such objects.">Persistent Volumes</translation>
   <translation id="132041398851471554" key="MSG_PERSISTENTVOLUME_LIST_CARDLIST_1" desc="Persistent volume list header: name.">Name</translation>
-  <translation id="5516067660249261426" key="MSG_PERSISTENTVOLUME_LIST_CARDLIST_2" desc="Persistent volume list header: labels.">Labels</translation>
+  <translation id="2070585758124097852" key="MSG_PERSISTENTVOLUME_LIST_CARDLIST_10" desc="Persistent volume list header: storage class.">Storage Class</translation>
+  <translation id="5310384443036079852" key="MSG_PERSISTENTVOLUME_LIST_CARDLIST_2" desc="Persistent volume list header: access modes.">Access Modes</translation>
   <translation id="401484757289437256" key="MSG_PERSISTENTVOLUME_LIST_CARDLIST_3" desc="Persistent volume list header: capacity.">Capacity</translation>
-  <translation id="119943904947653278" key="MSG_PERSISTENTVOLUME_LIST_CARDLIST_4" desc="Persistent volume list header: access modes.">Access modes</translation>
+  <translation id="6261463560337562570" key="MSG_PERSISTENTVOLUME_LIST_CARDLIST_4" desc="Persistent volume list header: reclaim policy.">Reclaim Policy</translation>
   <translation id="384445450481051056" key="MSG_PERSISTENTVOLUME_LIST_CARDLIST_5" desc="Persistent volume list header: status.">Status</translation>
   <translation id="6387315119675278668" key="MSG_PERSISTENTVOLUME_LIST_CARDLIST_6" desc="Persistent volume list header: claim.">Claim</translation>
   <translation id="1737383119058892029" key="MSG_PERSISTENTVOLUME_LIST_CARDLIST_7" desc="Persistent volume list header: reason.">Reason</translation>
@@ -726,7 +740,7 @@
   <translation id="8187351409255724077" key="MSG_REPLICATIONCONTROLLER_DETAIL_INFO_2" desc="Label \'Images\' for the list of images used in a replication controller, on its details page.">Images</translation>
   <translation id="5182546327040956779" key="MSG_REPLICATIONCONTROLLER_DETAIL_INFO_3" desc="Subtitle \'Status\' for the right section with pod status information on the replication controller details page.">Status</translation>
   <translation id="1084410744399884216" key="MSG_REPLICATIONCONTROLLER_DETAIL_INFO_4" desc="Label \'Pods\' for the pods in a replication controller on its details page.">Pods</translation>
-  <translation id="5269025916970350208" key="MSG_REPLICATIONCONTROLLER_DETAIL_INFO_5" desc="The message says how many pods were created (replication controller details page).">{{::$ctrl.replicationController.podInfo.currentCount}} created</translation>
+  <translation id="8954862708931825820" key="MSG_REPLICATIONCONTROLLER_DETAIL_INFO_5" desc="The message says how many pods were created (replication controller details page).">{{::$ctrl.replicationController.podInfo.current}} created</translation>
   <translation id="2486312277918544072" key="MSG_REPLICATIONCONTROLLER_DETAIL_INFO_6" desc="The message says how many pods are desired to run (replication controller details page).">{{::$ctrl.replicationController.podInfo.desired}} desired</translation>
   <translation id="6816738060650305426" key="MSG_REPLICATIONCONTROLLER_DETAIL_INFO_7" desc="The message says how many pods are running (replication controller details page).">{{::$ctrl.replicationController.podInfo.running}} running</translation>
   <translation id="2996817668812553434" key="MSG_REPLICATIONCONTROLLER_DETAIL_INFO_8" desc="Label \'Pods status\' for the status of the pods in a replication controller, on the replication controller details page.">Pods status</translation>
