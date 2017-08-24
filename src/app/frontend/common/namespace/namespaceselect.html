@@ -20,8 +20,8 @@ limitations under the License.
     flex="90"
     spellcheck="false"
     class="kd-namespace-autocomplete"
-    ng-blur="$ctrl.fillAutoCompleteWithCurrentNamespace()"
-    ng-focus="$ctrl.loadNamespacesIfNeeded()"
+    ng-blur="$ctrl.onBlur()"
+    ng-focus="$ctrl.onFocus()"
     md-no-cache="$ctrl.noCache"
     md-autoselect="$ctrl.noCache"
     md-selected-item="$ctrl.selectedItem"
@@ -36,6 +36,6 @@ limitations under the License.
       <span flex="90" md-highlight-text="$ctrl.searchText" md-highlight-flags="i">{{namespace}}</span>
     </md-item-template>
     <md-not-found>
-      No namespaces matching "{{ctrl.searchText}}".
+      "{{$ctrl.searchText}}" not found.
     </md-not-found>
 </md-autocomplete>

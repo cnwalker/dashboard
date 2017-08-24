@@ -89,6 +89,9 @@ export class NamespaceSelectController {
 
     /** @export {boolean} */
     this.noCache = true;
+    
+    /** @export {boolean} */
+    this.isFocused = false;
   }
 
   /**
@@ -212,8 +215,22 @@ export class NamespaceSelectController {
   /**
    * @export
    */
+  onFocus() {
+    this.loadNamespacesIfNeeded();
+  }
+
+  /**
+   * @export
+   */
+  onBlur() {
+    this.fillAutoCompleteWithCurrentNamespace();
+  }
+
+  /**
+   * @export
+   */
   searchNamespaces() {
-    if (this.searchText === '') {
+    if (this.searchText === '' || this.searchText === this.selectedNamespace) {
       return ['All namespaces'].concat(this.namespaces);
     }
 
