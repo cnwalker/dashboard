@@ -83,7 +83,6 @@ export class AllocatedResourcesChartController {
 
     let chart = nv.models.pieChart()
                     .showLegend(false)
-                    .showLabels(true)
                     .x((d) => {
                       return d.value;
                     })
@@ -96,10 +95,12 @@ export class AllocatedResourcesChartController {
                     .margin({top: margin, right: margin, bottom: margin, left: margin})
                     .width(size)
                     .height(size)
-                    .growOnHover(false)
-                    .labelType(labelFunc);
+                    .showLabels(true)
+                    .growOnHover(true)
+                    .labelThreshold(0.05)
+                    .labelType('percent')
 
-    chart.tooltip.enabled(false);
+    chart.tooltip.enabled(true);
 
     svg.attr('height', size)
         .attr('width', size)
@@ -152,7 +153,7 @@ export class AllocatedResourcesChartController {
         }
       } else {
         // Initializes a pie chart with multiple entries in a single ring
-        this.initPieChart_(svg, this.data, this.colorPalette, 0, 0.61, null);
+        this.initPieChart_(svg, this.data, this.colorPalette, 0, 0.45, null);
       }
     });
   }
