@@ -104,7 +104,7 @@ export class NamespaceSelectController {
       this.onNamespaceChanged_(toParams);
     });
 
-    this.fillAutoCompleteWithCurrentNamespace()
+    this.fillAutoCompleteWithCurrentNamespace();
   }
 
   /**
@@ -189,7 +189,8 @@ export class NamespaceSelectController {
    */
   changeNamespace() {
     this.state_.go('.', {[namespaceParam]: this.selectedNamespace});
-    this.fillAutoCompleteWithCurrentNamespace();
+    this.searchText = '';
+    document.getElementById('input-1').blur();
   }
 
   /**
@@ -262,7 +263,6 @@ export class NamespaceSelectController {
       } else {
         this.selectedNamespace = this.selectedItem;
       }
-      document.getElementById('input-3').blur();
       this.changeNamespace();
     }
   }
