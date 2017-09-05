@@ -13,19 +13,21 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-
 <div class="kd-namespace-select-title">[[Namespace|Title for namespace select.]]</div>
 <md-autocomplete
+    id="namespace-auto"
     md-select-on-focus
     flex="90"
     spellcheck="false"
     class="kd-namespace-autocomplete"
+    ng-click="$ctrl.displayAvailableNamespaces()"
     ng-blur="$ctrl.onBlur()"
     ng-focus="$ctrl.onFocus()"
     md-no-cache="$ctrl.noCache"
     md-autoselect="$ctrl.noCache"
     md-selected-item="$ctrl.selectedItem"
     md-search-text="$ctrl.searchText"
+    md-clear-button="false"
     md-dropdown-items="8"
     md-items="namespace in $ctrl.searchNamespaces()"
     md-selected-item-change="$ctrl.changeSelectedNamespace()"

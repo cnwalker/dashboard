@@ -89,7 +89,7 @@ export class NamespaceSelectController {
 
     /** @export {boolean} */
     this.noCache = true;
-    
+
     /** @export {boolean} */
     this.isFocused = false;
   }
@@ -159,6 +159,7 @@ export class NamespaceSelectController {
             this.selectedNamespace = DEFAULT_NAMESPACE;
           }
         }
+        this.fillAutoCompleteWithCurrentNamespace();
       } else {
         this.selectedNamespace = DEFAULT_NAMESPACE;
       }
@@ -189,8 +190,6 @@ export class NamespaceSelectController {
    */
   changeNamespace() {
     this.state_.go('.', {[namespaceParam]: this.selectedNamespace});
-    this.searchText = '';
-    document.getElementById('input-1').blur();
   }
 
   /**
@@ -231,6 +230,10 @@ export class NamespaceSelectController {
    * @export
    */
   searchNamespaces() {
+    if (this.searchText === 'All namespaces') {
+      return ['All namespaces'].concat(this.namespaces);
+    }
+
     if (this.searchText === '' || this.searchText === this.selectedNamespace) {
       return ['All namespaces'].concat(this.namespaces);
     }
@@ -265,6 +268,15 @@ export class NamespaceSelectController {
       }
       this.changeNamespace();
     }
+  }
+
+  /**
+   * @export
+   */
+  displayAvailableNamespaces() {
+    var autocompleteDOM = document.getElementById('namespace-auto').firstElementChild;
+    var autocompleteElement = angular.element(autocompleteDOM);
+    autocompleteElement.scope().$mdAutocompleteCtrl.clear();
   }
 }
 
