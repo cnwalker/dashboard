@@ -12,16 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {allocatedResourcesChartComponent} from './component';
+import {resourceStatusComponent} from './component';
 
 /**
- * Module containing allocated resource chart component.
+ * Module containing common graph components.
  */
 export default angular
     .module(
-        'kubernetesDashboard.common.components.allocatedresourceschart',
+        'kubernetesDashboard.common.components.resourcesstatus',
         [
           'ngMaterial',
           'ui.router',
         ])
-    .component('kdAllocatedResourcesChart', allocatedResourcesChartComponent);
+    .component('kdResourceStatus', resourceStatusComponent);

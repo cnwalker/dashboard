@@ -29,6 +29,7 @@ import {labelComponent} from './labels/component';
 import {middleEllipsisComponent} from './middleellipsis/component';
 import resourceCardModule from './resourcecard/resourcecard_module';
 import {infoCardComponent} from './resourcedetail/component';
+import resourceStatusModule from './resourcestatus/module';
 import {scaleButtonComponent} from './scale/component';
 import {serializedReferenceComponent} from './serializedreference/component';
 import {sparklineComponent} from './sparkline/component';
@@ -57,6 +58,7 @@ export default angular
           graphModule.name,
           annotationsModule.name,
           allocatedResourcesChartModule.name,
+          resourceStatusModule.name,
         ])
     .component('kdLabels', labelComponent)
     .component('kdZeroState', zeroStateComponent)
