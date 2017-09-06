@@ -50,11 +50,7 @@ export class ResourceStatusController {
     this.colorPalette = ['#00c752', '#f00', '#ff0'];
   }
 
-  /**
-   * @return {Object}
-   * @export
-   */
-  getResourceStats() {
+  getPodStats() {
     let pods = this.resourceList.pods;
 
     let resourceStats = {
@@ -77,15 +73,22 @@ export class ResourceStatusController {
     return resourceStats;
   }
 
-  getAggregatedResourceStats() {
-    let aggregateResource = this.resourceList;
+  getAggregateResourceStats() {
+    let aggregateResourceList = this.resourceList;
+
+    let resourceStats = {'success': 0, 'failed': 0, 'pending': 0, 'total': 0}
+
+                        aggregateResourceList.forEach(function(aggregateResource) {
+                          console.log(aggregateResource);
+                        });
   }
 
   $onInit() {
-    console.log('resourceList', this.resourceList);
-    console.log('title', this.title);
-    console.log('isAggregateResource', this.isAggregateResource);
-    this.resourceStats = this.getResourceStats();
+    if (this.isAggregateResource) {
+      this.resourceStats = this.getAggregateResourceStats();
+    } else {
+      this.resourceStats = this.getPodStats();
+    }
   }
 }
 

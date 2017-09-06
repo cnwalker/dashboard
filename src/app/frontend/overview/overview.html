@@ -29,10 +29,27 @@ limitations under the License.
   </kd-graph-card>
 </div>
 
-<kd-resource-status title="'Pod Status'"
-                    resourceList="$ctrl.overview.podList"
-                    isAggregateResource="false">
-</kd-resource-status>
+<kd-content-card>
+    <kd-title>[[Resource Status|Label for the resource status visualization.]]</kd-title>
+    <kd-content>
+        <div layout="row" layout-align="space-around center">
+            <kd-resource-status title="'Pod Status'"
+                                resource-list="$ctrl.overview.podList"
+                                is-aggregate-resource="false">
+            </kd-resource-status>
+
+            <kd-resource-status title="'Pod Status'"
+                                resource-list="$ctrl.overview.podList"
+                                is-aggregate-resource="false">
+            </kd-resource-status>
+
+            <kd-resource-status title="'Pod Status'"
+                                resource-list="$ctrl.overview.podList"
+                                is-aggregate-resource="false">
+            </kd-resource-status>
+        </div>
+    </kd-content>
+</kd-content-card>
 
 <kd-content-card ng-if="$ctrl.overview.podList.pods.length">
   <kd-content>
